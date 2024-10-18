@@ -1,0 +1,168 @@
+app:
+  description: News-app
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: workflow
+  name: News-app
+  use_icon_as_answer_icon: false
+kind: app
+version: 0.1.2
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: llm
+      id: 1729211768532-source-1729211782751-target
+      source: '1729211768532'
+      sourceHandle: source
+      target: '1729211782751'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: end
+      id: 1729211782751-source-1729211826599-target
+      source: '1729211782751'
+      sourceHandle: source
+      target: '1729211826599'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: Begin
+        type: start
+        variables:
+        - label: news
+          max_length: 256000
+          options: []
+          required: true
+          type: paragraph
+          variable: news
+      height: 90
+      id: '1729211768532'
+      position:
+        x: 80
+        y: 282
+      positionAbsolute:
+        x: 80
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0
+          mode: chat
+          name: gpt-4o-mini
+          provider: openai_api_compatible
+        prompt_template:
+        - id: 5d109c40-a7a4-4cce-8c04-814ca29436d0
+          role: system
+          text: You are a good news analyzer.
+        - id: 730a9491-7512-4a8d-bf72-11695ac103ac
+          role: user
+          text: "<Task>\n    Analyze the given news article and perform the following\
+            \ tasks:\n    1. Classify its level of xenophobia on a scale from 1 to\
+            \ 4, where:\n       - 1: None (No xenophobic content)\n       - 2: Low\
+            \ (Mildly xenophobic content)\n       - 3: Moderate (Moderately xenophobic\
+            \ content)\n       - 4: High (Highly xenophobic content)\n       Additionally,\
+            \ provide a brief explanation for your classification decision.\n    2.\
+            \ Determine the sentiment of the article as one of the following: negative,\
+            \ neutral, or positive.\n    3. Categorize the misinformation or hate\
+            \ speech based on its subject (e.g., crime, employment, social benefits)\
+            \ to identify patterns in the narratives. Provide a list of keywords that\
+            \ represent the main topics.\n  </Task>\n  <Input>\n    {{#1729211768532.news#}}\n\
+            \  </Input>\n\n  <OutputFormat>\n    <Description>The output should be\
+            \ in XML format, including the classification result, the reason behind\
+            \ it, the sentiment, and the subject category with relevant keywords.</Description>\n\
+            \    \n<Example_Output>\n        <Classification>3</Classification>\n\
+            \        <Reason>The article contains language that is moderately xenophobic.\
+            \ It uses terms and phrases that promote negative stereotypes about a\
+            \ specific group, but does not explicitly call for violence or extreme\
+            \ actions.</Reason>\n        <Sentiment>Negative</Sentiment>\n       \
+            \ <Subject>\n          <Category>Employment and Contribution</Category>\n\
+            \          <Keywords>immigrants, jobs, work, contribution, problems</Keywords>\n\
+            \        </Subject>\n    </Example_Output>\n  </OutputFormat>"
+        selected: true
+        title: LLM
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '1729211782751'
+      position:
+        x: 384
+        y: 282
+      positionAbsolute:
+        x: 384
+        y: 282
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1729211782751'
+          - text
+          variable: text
+        selected: false
+        title: End
+        type: end
+      height: 90
+      id: '1729211826599'
+      position:
+        x: 688
+        y: 282
+      positionAbsolute:
+        x: 688
+        y: 282
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: 86
+      y: 124
+      zoom: 1

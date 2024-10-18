@@ -1,0 +1,3 @@
+streamlit
+PyMuPDF 
+python-docx
