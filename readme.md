@@ -4,6 +4,19 @@ Paste a news article or upload a text-based PDF or DOCX. This Streamlit app flag
 
 ![Streamlit upload screen from the 2024 project report](assets/media-interface.png)
 
+## Two sample responses
+
+**Sample article** — “The community centre will host a neighbourhood picnic on Saturday. Volunteers will set up tables in the park.”
+
+Here are two hand-written workflow responses for that input. You can read both here without an API key. They illustrate how the app handles the response format.
+
+| Workflow response | What the reviewer sees |
+| --- | --- |
+| `<Classification>1</Classification><Reason>The notice describes the event without making a claim about a group.</Reason>` | **Classification: 1** followed by “The notice describes the event without making a claim about a group.” |
+| `<Classification>1</Classification>` | **Invalid response format. Please check the API.** |
+
+Both responses carry the same rating. Only the first has the explanation required by the [parser](demo.py#L32-L47). The [display code](demo.py#L140-L171) handles both outcomes.
+
 ## Run locally
 
 Import [the workflow](news-dify-config.yml) into Dify Cloud, configure its model provider and publish it. The app reads the workflow's API key from the `APP_KEY` environment variable. Newer Dify versions may require changes to the original export.
