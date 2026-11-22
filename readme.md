@@ -16,7 +16,11 @@ export APP_KEY='your-dify-workflow-key'
 streamlit run demo.py
 ```
 
-[The app](demo.py) sends the article as `news` and reads `data.outputs.text`. The parser expects `<Classification>` and `<Reason>`. If the response also includes sentiment, category or keywords, the app displays them with the rating.
+## What the app expects
+
+The [document reader](demo.py#L49-L61) extracts embedded text from PDF pages and paragraphs from Word files. A scanned PDF needs OCR before upload. The app sends the resulting article as `news` and reads the workflow response from `data.outputs.text`.
+
+The [parser](demo.py#L32-L47) requires both `<Classification>` and `<Reason>`. When the workflow returns a rating without an explanation, the interface shows a format error. Missing sentiment, category or keywords simply leaves those fields off the review card.
 
 ## Related paper
 
