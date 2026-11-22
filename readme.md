@@ -35,6 +35,14 @@ I implemented document handling, connected the application to the analysis servi
 
 This public snapshot contains the Streamlit/Dify interface and workflow layer. The exported workflow specifies `gpt-4o-mini`; the wider project's model-training and evaluation artifacts are separate from this snapshot.
 
+## Original project record
+
+My 2024 NYU applied-project report documents BERT-based language detection, GPT-4-based analysis, fact and language validation, topic analysis, a chatbot and the Streamlit website. I developed the preprocessing and analytical pipeline, handled module interfaces and worked on document processing and application integration.
+
+![Original interface from the 2024 project report](assets/media-interface.png)
+
+This original interface image is reproduced from the project report. The public repository remains the narrower Streamlit/Dify application snapshot.
+
 ## Repository files
 
 - `demo.py` — the Streamlit application and document-extraction functions.
